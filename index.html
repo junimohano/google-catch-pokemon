@@ -26,6 +26,9 @@
         content="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png">
 
     <title>Google Catch Pokemon - Interactive Pokemon Search Tool | Catch All 151 Pokemon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
     <script type="application/ld+json">
     {
@@ -50,83 +53,217 @@
     </script>
 
     <style>
+        :root {
+            --primary-color: #ef5350;
+            --secondary-color: #3761a8;
+            --accent-color: #ffcb05;
+            --light-bg: #f5f5f5;
+            --dark-text: #333;
+            --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --card-hover-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        
         body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
+            font-family: 'Poppins', sans-serif;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 30px;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ef5350' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            color: var(--dark-text);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
         .search-container {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            position: relative;
         }
 
         #searchInput {
             width: 100%;
-            padding: 10px;
+            padding: 15px 20px;
             font-size: 16px;
             border: 2px solid #ddd;
-            border-radius: 5px;
+            border-radius: 30px;
             margin-bottom: 10px;
             box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+        }
+
+        #searchInput:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(239, 83, 80, 0.2);
         }
 
         .pokemon-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
         }
 
         .pokemon-link {
             display: flex;
             align-items: center;
-            padding: 10px;
-            background-color: #f0f0f0;
-            border-radius: 5px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 12px;
             text-decoration: none;
-            color: #333;
-            transition: background-color 0.3s;
+            color: var(--dark-text);
+            transition: all 0.3s ease;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #eaeaea;
+            min-height: 90px;
+            overflow: hidden;
         }
 
         .pokemon-link:hover {
-            background-color: #e0e0e0;
+            transform: translateY(-5px);
+            box-shadow: var(--card-hover-shadow);
+            border-color: var(--accent-color);
         }
 
         .pokemon-index {
-            min-width: 30px;
+            min-width: 35px;
             font-weight: bold;
-            margin-right: 10px;
+            margin-right: 15px;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
         }
 
         .pokemon-image {
-            width: 50px;
-            height: 50px;
+            width: 70px;
+            height: 70px;
+            min-width: 70px;
             margin-right: 15px;
             object-fit: contain;
+            background: linear-gradient(135deg, #f5f7fa 0%, #dce8ff 100%);
+            border-radius: 12px;
+            padding: 8px;
+            border: none;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .pokemon-image::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border-radius: 14px;
+            z-index: -1;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .pokemon-link:hover .pokemon-image {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        
+        .pokemon-link:hover .pokemon-image::before {
+            opacity: 1;
         }
 
         .pokemon-name {
             flex-grow: 1;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--dark-text);
+            word-break: break-word;
+            hyphens: auto;
+            padding-right: 5px;
         }
 
         .visited-indicator {
-            color: #4CAF50;
-            margin-left: 10px;
+            color: var(--secondary-color);
+            margin-left: 5px;
+            min-width: 24px;
             font-weight: normal;
-            font-size: 14px;
+            font-size: 18px;
             vertical-align: middle;
             opacity: 0.9;
+            transition: transform 0.3s ease;
+        }
+
+        .pokemon-link:hover .visited-indicator {
+            transform: scale(1.2);
         }
 
         .hidden {
             display: none;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid var(--primary-color);
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+        }
+
+        footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            .pokemon-list {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                gap: 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+
+            .pokemon-image {
+                width: 60px;
+                height: 60px;
+                min-width: 60px;
+            }
+
+            .pokemon-link {
+                padding: 12px;
+                min-height: 80px;
+            }
         }
     </style>
 </head>
 
 <body>
     <header>
-        <h1>Pokemon Links (Generation 1)</h1>
+        <h1>Google Catch Pokemon Tool</h1>
         <p>Interactive tool to catch all 151 original Pokémon through Google's "Catch Pokémon" Easter egg. Click on any
             Pokémon to search and catch it on Google!</p>
     </header>
@@ -144,7 +281,7 @@
         <p>Google Catch Pokemon Tool - Catch all 151 original Generation 1 Pokémon through Google's Easter egg!</p>
         <p>View this project on <a href="https://github.com/junimohano/google-catch-pokemon" target="_blank"
                 rel="noopener noreferrer">GitHub</a></p>
-        <p>© 2023 Google Catch Pokemon Tool. Pokémon images from <a href="https://pokeapi.co/" target="_blank"
+        <p>© 2025 Google Catch Pokemon Tool. Pokémon images from <a href="https://pokeapi.co/" target="_blank"
                 rel="noopener noreferrer">PokeAPI</a>.</p>
     </footer>
 

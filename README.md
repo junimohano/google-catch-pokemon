@@ -1,4 +1,4 @@
-# 🔎 Google Catch Pokemon - Interactive Pokemon Search Tool
+# 🔎 Google Catch Pokemon Tool - Interactive Pokemon Search Tool
 
 A comprehensive tool for catching all 151 original Pokémon through Google's interactive "Catch Pokémon" Easter egg! 🎉 This web application makes it easy to search and catch Pokémon directly from Google Search results.
 
