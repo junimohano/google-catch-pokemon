@@ -62,7 +62,7 @@
             --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             --card-hover-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
-        
+
         body {
             font-family: 'Poppins', sans-serif;
             max-width: 900px;
@@ -76,30 +76,40 @@
 
         header {
             text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 3px solid var(--primary-color);
+            margin-bottom: 10px;
+            padding-bottom: 0;
+            border-bottom: 2px solid var(--primary-color);
         }
 
         h1 {
             color: var(--primary-color);
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            font-size: 1.8rem;
+            margin-bottom: 2px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        header p {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            white-space: nowrap;
         }
 
         .search-container {
-            margin-bottom: 30px;
+            margin-bottom: 10px;
             position: relative;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         #searchInput {
             width: 100%;
-            padding: 15px 20px;
-            font-size: 16px;
+            padding: 8px 15px;
+            font-size: 14px;
             border: 2px solid #ddd;
-            border-radius: 30px;
-            margin-bottom: 10px;
+            border-radius: 20px;
+            margin-bottom: 5px;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
             box-shadow: var(--card-shadow);
@@ -114,23 +124,25 @@
 
         .pokemon-list {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
         }
 
         .pokemon-link {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            padding: 15px;
+            padding: 12px 10px;
             background-color: white;
-            border-radius: 12px;
+            border-radius: 10px;
             text-decoration: none;
             color: var(--dark-text);
             transition: all 0.3s ease;
             box-shadow: var(--card-shadow);
             border: 1px solid #eaeaea;
-            min-height: 90px;
+            min-height: 125px;
             overflow: hidden;
+            position: relative;
         }
 
         .pokemon-link:hover {
@@ -139,26 +151,35 @@
             border-color: var(--accent-color);
         }
 
+        .pokemon-image-container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 8px;
+            justify-content: center;
+            height: 80px;
+        }
+
         .pokemon-index {
-            min-width: 35px;
+            position: absolute;
+            top: 8px;
+            left: 8px;
             font-weight: bold;
-            margin-right: 15px;
             color: var(--secondary-color);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .pokemon-image {
-            width: 70px;
-            height: 70px;
-            min-width: 70px;
-            margin-right: 15px;
+            width: 80px;
+            height: 80px;
+            min-width: 80px;
             object-fit: contain;
             background: linear-gradient(135deg, #f5f7fa 0%, #dce8ff 100%);
-            border-radius: 12px;
-            padding: 8px;
+            border-radius: 10px;
+            padding: 5px;
             border: none;
             position: relative;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -178,32 +199,36 @@
 
         .pokemon-link:hover .pokemon-image {
             transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
-        
+
         .pokemon-link:hover .pokemon-image::before {
             opacity: 1;
         }
 
         .pokemon-name {
-            flex-grow: 1;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             color: var(--dark-text);
             word-break: break-word;
             hyphens: auto;
-            padding-right: 5px;
+            text-align: center;
+            width: 100%;
+            margin-top: 5px;
         }
 
         .visited-indicator {
             color: var(--secondary-color);
-            margin-left: 5px;
-            min-width: 24px;
+            margin-left: 3px;
+            min-width: 20px;
             font-weight: normal;
-            font-size: 18px;
+            font-size: 16px;
             vertical-align: middle;
             opacity: 0.9;
             transition: transform 0.3s ease;
+            position: absolute;
+            top: 5px;
+            right: 5px;
         }
 
         .pokemon-link:hover .visited-indicator {
@@ -235,27 +260,45 @@
 
         @media (max-width: 768px) {
             body {
-                padding: 15px;
+                padding: 10px;
             }
-            
+
             .pokemon-list {
-                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-                gap: 15px;
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 8px;
             }
-            
+
             h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
+                margin-bottom: 3px;
             }
 
             .pokemon-image {
-                width: 60px;
-                height: 60px;
-                min-width: 60px;
+                width: 65px;
+                height: 65px;
+                min-width: 65px;
+                padding: 3px;
+            }
+
+            .pokemon-image-container {
+                height: 65px;
+                margin-bottom: 5px;
             }
 
             .pokemon-link {
-                padding: 12px;
-                min-height: 80px;
+                padding: 8px;
+                min-height: 105px;
+            }
+
+            .pokemon-name {
+                font-size: 0.9rem;
+                margin-top: 3px;
+            }
+
+            .pokemon-index {
+                font-size: 0.8rem;
+                top: 6px;
+                left: 6px;
             }
         }
     </style>
@@ -264,25 +307,18 @@
 <body>
     <header>
         <h1>Google Catch Pokemon Tool</h1>
-        <p>Interactive tool to catch all 151 original Pokémon through Google's "Catch Pokémon" Easter egg. Click on any
-            Pokémon to search and catch it on Google!</p>
+        <p>Search and catch all 151 original Pokémon through Google's Easter egg</p>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search Pokemon...">
+        </div>
     </header>
-    <div class="search-container">
-        <!-- <button id="openAllLinks"
-            style="margin-bottom: 10px; padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">Open
-            All Pokemon Links</button> -->
-        <input type="text" id="searchInput" placeholder="Search Pokemon...">
-    </div>
     <div class="pokemon-list" id="pokemonList">
     </div>
 
     <footer
-        style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; text-align: center; font-size: 14px; color: #666;">
-        <p>Google Catch Pokemon Tool - Catch all 151 original Generation 1 Pokémon through Google's Easter egg!</p>
-        <p>View this project on <a href="https://github.com/junimohano/google-catch-pokemon" target="_blank"
-                rel="noopener noreferrer">GitHub</a></p>
-        <p>© 2025 Google Catch Pokemon Tool. Pokémon images from <a href="https://pokeapi.co/" target="_blank"
-                rel="noopener noreferrer">PokeAPI</a>.</p>
+        style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #ddd; text-align: center; font-size: 12px; color: #666;">
+        <p>View on <a href="https://github.com/junimohano/google-catch-pokemon" target="_blank"
+                rel="noopener noreferrer">GitHub</a>
     </footer>
 
     <script>
@@ -329,13 +365,26 @@
             visitedIndicator.textContent = '👁️';
             visitedIndicator.style.display = 'none';
 
-            pokemonLink.innerHTML = `
-                <span class="pokemon-index">${pokemonNumber}</span>
+            const indexSpan = document.createElement('span');
+            indexSpan.className = 'pokemon-index';
+            indexSpan.textContent = pokemonNumber;
+
+            const imageContainer = document.createElement('div');
+            imageContainer.className = 'pokemon-image-container';
+
+            imageContainer.innerHTML = `
                 <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png" 
                      alt="${pokemon}" 
                      class="pokemon-image">
-                <span class="pokemon-name">${pokemon}</span>
             `;
+
+            const nameElement = document.createElement('span');
+            nameElement.className = 'pokemon-name';
+            nameElement.textContent = pokemon;
+
+            pokemonLink.appendChild(indexSpan);
+            pokemonLink.appendChild(imageContainer);
+            pokemonLink.appendChild(nameElement);
             pokemonLink.appendChild(visitedIndicator);
 
             pokemonLink.addEventListener('click', function () {
@@ -351,14 +400,6 @@
         });
 
         const searchInput = document.getElementById('searchInput');
-        const openAllButton = document.getElementById('openAllLinks');
-
-        openAllButton.addEventListener('click', function () {
-            const pokemonLinks = document.querySelectorAll('.pokemon-link');
-            pokemonLinks.forEach(link => {
-                window.open(link.href, '_blank');
-            });
-        });
 
         searchInput.addEventListener('input', function () {
             const searchTerm = this.value.toLowerCase();
