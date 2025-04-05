@@ -4,7 +4,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Catch Pokemon</title>
+    <meta name="description"
+        content="Interactive tool to catch all 151 original Pokémon through Google's Catch Pokemon Easter egg. Search and catch Pokémon easily!">
+    <meta name="keywords"
+        content="Google Catch Pokemon, Pokemon Easter egg, Catch Pokemon Google, Pokemon search tool, Generation 1 Pokemon">
+    <meta name="author" content="Google Catch Pokemon Tool">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://junimohano.github.io/google-catch-pokemon/">
+    <meta property="og:title" content="Google Catch Pokemon - Interactive Pokemon Search Tool">
+    <meta property="og:description"
+        content="Catch all 151 original Pokémon through Google's interactive Easter egg! Quick and easy way to search and catch Pokémon.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://junimohano.github.io/google-catch-pokemon/">
+    <meta property="twitter:title" content="Google Catch Pokemon - Interactive Pokemon Search Tool">
+    <meta property="twitter:description"
+        content="Catch all 151 original Pokémon through Google's interactive Easter egg! Quick and easy way to search and catch Pokémon.">
+    <meta property="twitter:image"
+        content="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png">
+
+    <title>Google Catch Pokemon - Interactive Pokemon Search Tool | Catch All 151 Pokemon</title>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Google Catch Pokemon - Interactive Pokemon Search Tool",
+      "url": "https://junimohano.github.io/google-catch-pokemon/",
+      "description": "Interactive tool to catch all 151 original Pokémon through Google's Catch Pokemon Easter egg.",
+      "applicationCategory": "GameApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "junimohano"
+      },
+      "keywords": "Google Catch Pokemon, Pokemon Easter egg, Catch Pokemon Google, Pokemon search tool, Generation 1 Pokemon"
+    }
+    </script>
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -81,7 +125,11 @@
 </head>
 
 <body>
-    <h1>Pokemon Links (Generation 1)</h1>
+    <header>
+        <h1>Pokemon Links (Generation 1)</h1>
+        <p>Interactive tool to catch all 151 original Pokémon through Google's "Catch Pokémon" Easter egg. Click on any
+            Pokémon to search and catch it on Google!</p>
+    </header>
     <div class="search-container">
         <!-- <button id="openAllLinks"
             style="margin-bottom: 10px; padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">Open
@@ -90,6 +138,15 @@
     </div>
     <div class="pokemon-list" id="pokemonList">
     </div>
+
+    <footer
+        style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; text-align: center; font-size: 14px; color: #666;">
+        <p>Google Catch Pokemon Tool - Catch all 151 original Generation 1 Pokémon through Google's Easter egg!</p>
+        <p>View this project on <a href="https://github.com/junimohano/google-catch-pokemon" target="_blank"
+                rel="noopener noreferrer">GitHub</a></p>
+        <p>© 2023 Google Catch Pokemon Tool. Pokémon images from <a href="https://pokeapi.co/" target="_blank"
+                rel="noopener noreferrer">PokeAPI</a>.</p>
+    </footer>
 
     <script>
         const pokemonList = [
@@ -130,7 +187,6 @@
             pokemonLink.className = 'pokemon-link';
             pokemonLink.target = '_blank';
 
-            // Create visited indicator
             const visitedIndicator = document.createElement('span');
             visitedIndicator.className = 'visited-indicator';
             visitedIndicator.textContent = '👁️';
@@ -145,13 +201,11 @@
             `;
             pokemonLink.appendChild(visitedIndicator);
 
-            // Add click event to mark as visited
-            pokemonLink.addEventListener('click', function() {
+            pokemonLink.addEventListener('click', function () {
                 localStorage.setItem(`pokemon_${index}`, 'visited');
                 visitedIndicator.style.display = 'inline';
             });
 
-            // Check if already visited
             if (localStorage.getItem(`pokemon_${index}`) === 'visited') {
                 visitedIndicator.style.display = 'inline';
             }

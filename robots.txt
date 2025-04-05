@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://junimohano.github.io/google-catch-pokemon/sitemap.xml 
